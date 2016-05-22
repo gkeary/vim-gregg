@@ -82,7 +82,7 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 " to upper a word do viwU
 " to lower a word do viwu
 inoremap <c-u> <esc>viwU
-inoremap jk <esc> 
+inoremap jj <esc> 
 inoremap <esc> <nop>
 
 "max_connections_allowed within a GROUP of words max_connections_allowed 
@@ -98,7 +98,7 @@ inoremap <esc> <nop>
 "
 "
 "nopnopnopa group of words max_connections_allowed 
-"max_connections_allowed within a group of words max_connections_allowed 
+"MAX_CONNECTIONS_ALLOWED within a group of words max_connections_allowed 
 "max_connections_allowed hey here within a group of words max_connections_allowed 
 "max_connections_allowed now is the time for all good men to cometo the aid of
 "their country .......
