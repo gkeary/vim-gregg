@@ -68,7 +68,14 @@ colorscheme solarized
 let mapleader = "-"
 noremap <leader>ev :vsplit $MYVIMRC<cr>
 noremap <leader>sv :source $MYVIMRC<cr>
+"
+" put surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 
+
 :set guifont=Lucida_Console:h20:cDEFAULT
+:set relativenumber numberwidth=3 
+
+"here is a "word"
+"
 "	echo '>^.^>'
