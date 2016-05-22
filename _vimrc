@@ -82,9 +82,27 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 " to upper a word do viwU
 " to lower a word do viwu
 inoremap <c-u> <esc>viwU
+inoremap jk <esc> 
+inoremap <esc> <nop>
 
 "max_connections_allowed within a GROUP of words max_connections_allowed 
+"max_connhiere is some text added in insert mode.
+"
+"and when I finish typing the escape button no longer works..
+"
+"so how do I ever get out of insert mode?
+"
+"JUst type the new maping: i.e. jk !!!  ections_allowed within so how is it going?
+"
+"
+"
+"
+"nopnopnopa group of words max_connections_allowed 
 "max_connections_allowed within a group of words max_connections_allowed 
-"max_connections_allowed within a group of words max_connections_allowed 
-"max_connections_allowed within a group of words max_connections_allowed 
-"max_connections_allowed within a group of words max_connections_allowed 
+"max_connections_allowed hey here within a group of words max_connections_allowed 
+"max_connections_allowed now is the time for all good men to cometo the aid of
+"their country .......
+"
+"
+"
+"within a group of words max_connections_allowed 
