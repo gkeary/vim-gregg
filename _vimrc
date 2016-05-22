@@ -59,7 +59,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 "  this one didn't work: autocmd bufenter * if (winnr("$") == 1 && b:NERDTreeType == "primary") | q | endif
 autocmd bufenter * if (winnr("$") == 1 && exists ("b:NERDTreeType") && b:NERDTreeType == "primary") |q | endif
 
-map <C-n> :NERDTreeToggle<CR> 
+noremap <C-n> :NERDTreeToggle<CR> 
 
 syntax enable
 set background=dark
@@ -79,3 +79,12 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 "here is a "word"
 "
 "	echo '>^.^>'
+" to upper a word do viwU
+" to lower a word do viwu
+inoremap <c-u> <esc>viwU
+
+"max_connections_allowed within a GROUP of words max_connections_allowed 
+"max_connections_allowed within a group of words max_connections_allowed 
+"max_connections_allowed within a group of words max_connections_allowed 
+"max_connections_allowed within a group of words max_connections_allowed 
+"max_connections_allowed within a group of words max_connections_allowed 
