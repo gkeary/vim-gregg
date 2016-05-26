@@ -1,5 +1,8 @@
 set nocompatible
 
+"  here is a link to steve losh's book:
+"  https://github.com/sjl/learnvimscriptthehardway
+"
 " copied from MAX to Toothless 5/21/2016 
 "source $VIMRUNTIME/vimrc_example.vim
 " for gui  -- let's try this
