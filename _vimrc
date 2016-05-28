@@ -6,7 +6,7 @@ set nocompatible
 " copied from MAX to Toothless 5/21/2016 
 "source $VIMRUNTIME/vimrc_example.vim
 " for gui  -- let's try this
-source $VIMRUNTIME/gvimrc_example.vim
+"source $VIMRUNTIME/gvimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 
 " makes the mouse behave like MicroSoft Windows mouse  cf behave xterm 
@@ -17,6 +17,7 @@ syntax on
 filetype plugin indent on
 
 if !exists(":DiffOrig")
+	echoerr 'Hey'
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
@@ -25,7 +26,7 @@ set diffexpr=MyDiff()
 
 
 function! MyDiff()
-   let opt = '-a --binary '
+   let opt = '-a --binary horizontal '
    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
    let arg1 = v:fname_in
@@ -35,7 +36,7 @@ function! MyDiff()
    let arg3 = v:fname_out
    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
    if $VIMRUNTIME =~ ' '
-     if &sh =~ "\<cmd"
+     if &sh =~ '\<cmd'
        if empty(&shellxquote)
          let l:shxq_sav = ''
          set shellxquote&
@@ -47,20 +48,29 @@ function! MyDiff()
    else
      let cmd = $VIMRUNTIME . '\diff'
    endif
-   
-    echoerr  &cmd cmd v.fname v.fname_new v.fname_out diffopt
+    echoerr  'cmd=' . cmd . 'opt=' . opt . 'arg1: '. arg1 . 'arg2: ' . arg2 
   " silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
    if exists('l:shxq_sav')
      let &shellxquote=l:shxq_sav
    endif
  endfunction
 
+ " 
+ " autocmd entries
+ " 
 
 "took this out 10/21/2015 
 "autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 "  this one didn't work: autocmd bufenter * if (winnr("$") == 1 && b:NERDTreeType == "primary") | q | endif
 autocmd bufenter * if (winnr("$") == 1 && exists ("b:NERDTreeType") && b:NERDTreeType == "primary") |q | endif
+"
+"  comment <this-line> stuff
+"
+:autocmd FileType CSHARP nnoremap <buffer> <localleader>c 0I//<esc>
+:autocmd FileType BASIC nnoremap <buffer> <localleader>c I'<esc>
+:autocmd FileType vim     nnoremap <buffer> <localleader>c I"<esc>
+
 
 syntax enable
 set background=dark
@@ -68,13 +78,13 @@ colorscheme solarized
 :set guifont=Lucida_Console:h16:cDEFAULT
 :set relativenumber numberwidth=3 
 
-let mapleader = "-"
+let mapleader = ","
 "  \ must be escaped
-let maplocalleader = "\\"
+let maplocalleader = ","
 
 "  mappings mappings
 
-nnoremap <leader><C-n> :NERDTreeToggle<CR> 
+nnoremap <leader>n :NERDTreeToggle<CR> 
 nnoremap <leader>e :vsplit $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 
@@ -100,4 +110,15 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 "inoremap jj <esc> 
 "inoremap <esc> <nop>
 "Convert all the mappings you added to your ~/.vimrc file in the previous chapters to be prefixed with <leader> so they don't shadow existing commands.
+"Remember: the best way to learn to use these new snippets is to disable the old way of doing things. Running :iabbrev <buffer> return NOPENOPENOPE will force you to use your abbreviation instead. Add these "training" snippets to match all the ones you created to save time.
+":iabbrev <buffer> return NOPENOPENOPE 
 
+" Status Line Status line 
+:set statusline=%.20f         " Path to the file
+:set statusline+=\ -\      " Separator
+:set statusline+=FileType: " Label
+:set statusline+=%y        " Filetype of the file
+:set statusline+=%=        " Switch to the right side
+:set statusline+=%-5l        " Current line
+:set statusline+=/         " Separator
+:set statusline+=%-7L        " Total lines
