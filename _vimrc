@@ -1,30 +1,29 @@
-set nocompatible
-
-"  here is a link to steve losh's book:
+"Startup {{{
+"  here is a link to steve losh's book:"
 "  https://github.com/sjl/learnvimscriptthehardway
 "
 " copied from MAX to Toothless 5/21/2016 
 "source $VIMRUNTIME/vimrc_example.vim
 " for gui  -- let's try this
 "source $VIMRUNTIME/gvimrc_example.vim
-source $VIMRUNTIME/mswin.vim
 
+"}}}
+"  zM close-all   zR  Open-all
+source $VIMRUNTIME/mswin.vim
 " makes the mouse behave like MicroSoft Windows mouse  cf behave xterm 
 behave mswin 
-
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-
+"  Diff Original (DiffOrig) {{{
 if !exists(":DiffOrig")
-	echoerr 'Hey'
+	"echoerr 'Hey'
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
+"}}}
+" MyDiff {{{
 set diffexpr=MyDiff()
-
-
 function! MyDiff()
    let opt = '-a --binary horizontal '
    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
@@ -54,36 +53,42 @@ function! MyDiff()
      let &shellxquote=l:shxq_sav
    endif
  endfunction
-
- " 
- " autocmd entries
- " 
-
+"}}}
+"NERDTree {{{
 "took this out 10/21/2015 
 "autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 "  this one didn't work: autocmd bufenter * if (winnr("$") == 1 && b:NERDTreeType == "primary") | q | endif
 autocmd bufenter * if (winnr("$") == 1 && exists ("b:NERDTreeType") && b:NERDTreeType == "primary") |q | endif
 "
-"  comment <this-line> stuff
-"
+
+ " "}}}
+"  Comment a single line ---------------------------------- {{{
 :autocmd FileType CSHARP nnoremap <buffer> <localleader>c 0I//<esc>
 :autocmd FileType BASIC nnoremap <buffer> <localleader>c I'<esc>
 :autocmd FileType vim     nnoremap <buffer> <localleader>c I"<esc>
 
-
+"  }}}
+" Vimscript file settings ---------------------- {{{
+augroup filetype_vim
+	autocmd!
+	autocmd Filetype vim setlocal foldmethod=marker
+	" This will tell Vim to use the marker method of folding
+	" for any Vimscript files.
+augroup END
+" }}}
+" Basic Settings  {{{ 
 syntax enable
 set background=dark
 colorscheme solarized
 :set guifont=Lucida_Console:h16:cDEFAULT
 :set relativenumber numberwidth=3 
 
+" }}}
+"  Mappings {{{
 let mapleader = ","
 "  \ must be escaped
 let maplocalleader = ","
-
-"  mappings mappings
-
 nnoremap <leader>n :NERDTreeToggle<CR> 
 nnoremap <leader>e :vsplit $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
@@ -95,12 +100,23 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 "
 "	echo '>^.^>'
 "
-" Abbreviations Abbreviations
+"  }}}
+" Abbreviations  {{{
 :iabbrev @@    gregg@gkeary.com
 :iabbrev ccopy Copyright 2016 Gregg Keary, all rights reserved.
 :iabbrev ssig --- <cr>Gregg Keary<cr>gregg@gkeary.com
-
-
+" }}}
+" Status Line {{{
+:set statusline=%.20f         " Path to the file
+:set statusline+=\ -\      " Separator
+:set statusline+=FileType: " Label
+:set statusline+=%y        " Filetype of the file
+:set statusline+=%=        " Switch to the right side
+:set statusline+=%-5l        " Current line
+:set statusline+=/         " Separator
+:set statusline+=%-7L        " Total lines
+" }}}
+"  Comments Comments {{{
 " to upper a word do viwU
 " to lower a word do viwu
 " take this out: inoremap <c-u> <esc>viwU
@@ -113,12 +129,4 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 "Remember: the best way to learn to use these new snippets is to disable the old way of doing things. Running :iabbrev <buffer> return NOPENOPENOPE will force you to use your abbreviation instead. Add these "training" snippets to match all the ones you created to save time.
 ":iabbrev <buffer> return NOPENOPENOPE 
 
-" Status Line Status line 
-:set statusline=%.20f         " Path to the file
-:set statusline+=\ -\      " Separator
-:set statusline+=FileType: " Label
-:set statusline+=%y        " Filetype of the file
-:set statusline+=%=        " Switch to the right side
-:set statusline+=%-5l        " Current line
-:set statusline+=/         " Separator
-:set statusline+=%-7L        " Total lines
+" }}}
