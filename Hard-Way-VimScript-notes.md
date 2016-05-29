@@ -313,3 +313,13 @@ Perform a search in your file with /someword, then run the following command:
 
 :echo @/
 Vim will echo the search pattern you just used. This lets you programmatically read and modify the current search pattern, which can be very useful at times.
+
+
+Vim Coerces variables
+-----------------------------
+After observing all of these commands we can draw a few informed conclusions about Vimscript:
+
+Vim will try to coerce variables (and literals) when necessary. When 10 + "20foo" is evaluated Vim will convert "20foo" to an integer (which results in 20) and then add it to 10.
+Strings that start with a number are coerced to that number, otherwise they're coerced to 0.
+Vim will execute the body of an if statement when its condition evaluates to a non-zero integer, after all coercion takes place.
+VIM WILL EXECUTE THE BODY OF AN IF STATEMENT WHEN ITS CONDITION EVALUATES TO A NON-ZERO INTEGER, AFTER ALL COERCION TAKES PLACE.
