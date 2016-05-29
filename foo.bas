@@ -3,6 +3,8 @@ Imports System.Text
 Public NotInheritable Class AboutBox1
 
     Private Sub AboutBox1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    hello!hello!hello!hello!hello!hello!hello!hello!
+	
         ' Set the title of the form.
         Dim ApplicationTitle As String
         If My.Application.Info.Title <> "" Then

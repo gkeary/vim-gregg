@@ -6,7 +6,7 @@ http://learnvimscriptthehardway.stevelosh.com/
 A few quick notes about things that I read in the book.
 
 
-Githu Book Source 
+Github  Book Source 
 -------
 
 + : here is the link
@@ -275,3 +275,41 @@ And that right there gives meaning to the buffer specific settings! Thanks Vim!
 
 GOTCHA: The one downside is that you cannot use any special characters when
 specifying the command to be run.
+
+
+Variables
+------------
+
+let foo = "bar"   
+foo is now a variable.  it can be a string or an integer.  it''s value can be seen with "echo &foo"
+
+Options as Variables:  set textwidth= 80 ; echo &textwidth (here textwidth is a vim "OPTION"
+Using an ampersand in front of a name tells Vim that you''re referring to the option, not a variable that happens to have the same name.
+
+:let &textwidth = 100
+:set textwidth?
+Vim will display textwidth=100.
+
+Why would we want to do this when we could just use set? Run the following commands:
+
+:let &textwidth = &textwidth + 10
+:set textwidth?
+This time Vim displays textwidth=110. When you set an option using set you can only set it to a single literal value. When you use let and set it as a variable you can use the full power of Vimscript to determine the value.
+
+
+Registers as Variables
+-------------------
+
+:let @a="hello!"
+register A has that text
+so:  "ap will put the register text
+
+Select a word in your file and yank it with y, then run this command:
+
+:echo @"
+Vim will echo the word you just yanked. The " register is the "unnamed" register, which is where text you yank without specifying a destination will go.
+
+Perform a search in your file with /someword, then run the following command:
+
+:echo @/
+Vim will echo the search pattern you just used. This lets you programmatically read and modify the current search pattern, which can be very useful at times.

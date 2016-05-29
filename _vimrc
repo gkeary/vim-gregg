@@ -1,13 +1,3 @@
-"Startup {{{
-"  here is a link to steve losh's book:"
-"  https://github.com/sjl/learnvimscriptthehardway
-"
-" copied from MAX to Toothless 5/21/2016 
-"source $VIMRUNTIME/vimrc_example.vim
-" for gui  -- let's try this
-"source $VIMRUNTIME/gvimrc_example.vim
-
-"}}}
 "  zM close-all   zR  Open-all
 source $VIMRUNTIME/mswin.vim
 " makes the mouse behave like MicroSoft Windows mouse  cf behave xterm 
@@ -22,10 +12,21 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 "}}}
+" DiffOrig EXPANDED {{{
+  "command DiffOrig 
+  "
+" :vert new  " new window with vertical split
+" :set bt=nofile " buftype has <no file> 
+" :r ++edit # " replace everything with contents of previous buffer 
+" :0d_ " delete the top line ??? 
+" :diffthis " set diffopts for this buffer  <calls MyDiff()>
+" :wincmd p " move to the next window (to-the-right) 
+" :diffthis " set diffopts for this as the second buffer
+" }}}
 " MyDiff {{{
 set diffexpr=MyDiff()
 function! MyDiff()
-   let opt = '-a --binary horizontal '
+   let opt = '-a --binary '
    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
    let arg1 = v:fname_in
@@ -47,8 +48,7 @@ function! MyDiff()
    else
      let cmd = $VIMRUNTIME . '\diff'
    endif
-    echoerr  'cmd=' . cmd . 'opt=' . opt . 'arg1: '. arg1 . 'arg2: ' . arg2 
-  " silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
    if exists('l:shxq_sav')
      let &shellxquote=l:shxq_sav
    endif
@@ -83,6 +83,8 @@ set background=dark
 colorscheme solarized
 :set guifont=Lucida_Console:h16:cDEFAULT
 :set relativenumber numberwidth=3 
+
+
 
 " }}}
 "  Mappings {{{
