@@ -75,10 +75,15 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>e :vsplit $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 nnoremap <leader>q :call QuickfixToggle()<cr>
+"
+"Stop the highlighting for the 'hlsearch' option
+nnoremap <leader>hl :nohlsearch<CR>
 
 " surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 
+" By default, use magic for Regular Expressions
+nnoremap / /\v
 "here is a "word"
 "
 "	echo '>^.^>'
