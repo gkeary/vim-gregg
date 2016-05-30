@@ -85,7 +85,7 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 " By default, use magic for Regular Expressions
 nnoremap / /\v
 " Search (grep)  for the word under the cursor
-:nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " %"<cr>:copen<cr>
+":nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " %"<cr>:copen<cr>
 
 "here is a "word"
 "
