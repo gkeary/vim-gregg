@@ -4,11 +4,12 @@ source $VIMRUNTIME/mswin.vim
 behave mswin 
 execute pathogen#infect()
 syntax on
+set hlsearch incsearch 
 filetype plugin indent on
 "  Diff Original (DiffOrig) {{{
 if !exists(":DiffOrig")
 	"echoerr 'Hey'
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit  | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
 "}}}
@@ -17,7 +18,7 @@ endif
   "
 " :vert new  " new window with vertical split
 " :set bt=nofile " buftype has <no file> 
-" :r ++edit # " replace everything with contents of previous buffer 
+" :r ++edit  " replace everything with contents of previous buffer 
 " :0d_ " delete the top line ??? 
 " :diffthis " set diffopts for this buffer  <calls MyDiff()>
 " :wincmd p " move to the next window (to-the-right) 
@@ -44,6 +45,16 @@ augroup filetype_vim
 	autocmd Filetype vim setlocal foldmethod=marker
 	" This will tell Vim to use the marker method of folding
 	" for any Vimscript files.
+augroup END
+" }}}
+" gitcommit settings ---------------------- {{{
+function! Remove()
+	:execute "normal ixxx\<esc"
+	":execute "1,$s/\//g"
+endfunction
+augroup filetype_gitcommit
+	autocmd!
+	:autocmd FileType gitcommit  nnoremap <buffer> <localleader>33 Remove()
 augroup END
 " }}}
 " Basic Settings  {{{ 
