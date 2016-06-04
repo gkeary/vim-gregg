@@ -1,5 +1,8 @@
-Learn VimScript The Hard Way
+Notes file pushed from Toothless to vim-gregg(master)
 ============================
+
+github book source
+-----------
 
 http://learnvimscriptthehardway.stevelosh.com/
 
