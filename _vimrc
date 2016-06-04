@@ -64,6 +64,7 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>e :vsplit $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 nnoremap <leader>q :call QuickfixToggle()<cr>
+nnoremap <leader>f :call OpenAllFolds()<cr>
 
 " surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel

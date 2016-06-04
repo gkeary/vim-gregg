@@ -1,4 +1,13 @@
-noremap <leader>q :call QuickfixToggle()<cr>
+" FoldToggle {{{
+"nnoremap <leader>f :call ToggleAllFolds()<cr>
+
+function! OpenAllFolds()
+	execute "normal!  zi"
+endfunction
+"}}}
+"
+" QuickfixToggle {{{
+" noremap <leader>q :call QuickfixToggle()<cr>
 
 let g:quickfix_is_open = 0
 
@@ -13,6 +22,7 @@ function! QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
+"}}}
 " MyDiff {{{
 set diffexpr=MyDiff()
 function! MyDiff()
