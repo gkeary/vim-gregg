@@ -4,11 +4,16 @@ source $VIMRUNTIME/mswin.vim
 behave mswin 
 execute pathogen#infect()
 syntax on
+set hlsearch incsearch 
 filetype plugin indent on
 "  Diff Original (DiffOrig) {{{
 if !exists(":DiffOrig")
 	"echoerr 'Hey'
+<<<<<<< HEAD
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+=======
+  command DiffOrig vert new | set bt=nofile | r ++edit  | 0d_ | diffthis
+>>>>>>> grep-operator
 		  \ | wincmd p | diffthis
 endif
 "}}}
@@ -17,7 +22,11 @@ endif
   "
 " :vert new  " new window with vertical split
 " :set bt=nofile " buftype has <no file> 
+<<<<<<< HEAD
 " :r ++edit # " replace everything with contents of previous buffer 
+=======
+" :r ++edit  " replace everything with contents of previous buffer 
+>>>>>>> grep-operator
 " :0d_ " delete the top line ??? 
 " :diffthis " set diffopts for this buffer  <calls MyDiff()>
 " :wincmd p " move to the next window (to-the-right) 
@@ -52,9 +61,30 @@ set background=dark
 colorscheme solarized
 :set guifont=Lucida_Console:h16:cDEFAULT
 :set relativenumber numberwidth=3 
+<<<<<<< HEAD
+
+=======
 
 
 
+" }}}
+"  Mappings {{{
+let mapleader = ","
+"  \ must be escaped
+let maplocalleader = ","
+nnoremap <leader>n :NERDTreeToggle<CR> 
+nnoremap <leader>e :vsplit $MYVIMRC<cr>
+nnoremap <leader>s :source $MYVIMRC<cr>
+nnoremap <leader>q :call QuickfixToggle()<cr>
+"
+"Stop the highlighting for the 'hlsearch' option
+nnoremap <leader>hl :nohlsearch<CR>
+>>>>>>> grep-operator
+
+" surround current word with double-quotes
+nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
+
+<<<<<<< HEAD
 " }}}
 "  Mappings {{{
 let mapleader = ","
@@ -68,6 +98,12 @@ nnoremap <leader>f :call OpenAllFolds()<cr>
 
 " surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
+=======
+" By default, use magic for Regular Expressions
+nnoremap / /\v
+" Search (grep)  for the word under the cursor
+":nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " %"<cr>:copen<cr>
+>>>>>>> grep-operator
 
 "here is a "word"
 "
@@ -103,4 +139,3 @@ nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 ":iabbrev <buffer> return NOPENOPENOPE 
 
 " }}}
-
