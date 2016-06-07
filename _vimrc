@@ -9,11 +9,7 @@ filetype plugin indent on
 "  Diff Original (DiffOrig) {{{
 if !exists(":DiffOrig")
 	"echoerr 'Hey'
-<<<<<<< HEAD
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-=======
   command DiffOrig vert new | set bt=nofile | r ++edit  | 0d_ | diffthis
->>>>>>> grep-operator
 		  \ | wincmd p | diffthis
 endif
 "}}}
@@ -22,11 +18,7 @@ endif
   "
 " :vert new  " new window with vertical split
 " :set bt=nofile " buftype has <no file> 
-<<<<<<< HEAD
-" :r ++edit # " replace everything with contents of previous buffer 
-=======
 " :r ++edit  " replace everything with contents of previous buffer 
->>>>>>> grep-operator
 " :0d_ " delete the top line ??? 
 " :diffthis " set diffopts for this buffer  <calls MyDiff()>
 " :wincmd p " move to the next window (to-the-right) 
@@ -55,15 +47,22 @@ augroup filetype_vim
 	" for any Vimscript files.
 augroup END
 " }}}
+" gitcommit settings ---------------------- {{{
+function! Remove()
+	:execute "normal ixxx\<esc"
+	":execute "1,$s/\//g"
+endfunction
+augroup filetype_gitcommit
+	autocmd!
+	:autocmd FileType gitcommit  nnoremap <buffer> <localleader>33 Remove()
+augroup END
+" }}}
 " Basic Settings  {{{ 
 syntax enable
 set background=dark
 colorscheme solarized
 :set guifont=Lucida_Console:h16:cDEFAULT
 :set relativenumber numberwidth=3 
-<<<<<<< HEAD
-
-=======
 
 
 
@@ -79,31 +78,14 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 "
 "Stop the highlighting for the 'hlsearch' option
 nnoremap <leader>hl :nohlsearch<CR>
->>>>>>> grep-operator
 
 " surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
 
-<<<<<<< HEAD
-" }}}
-"  Mappings {{{
-let mapleader = ","
-"  \ must be escaped
-let maplocalleader = ","
-nnoremap <leader>n :NERDTreeToggle<CR> 
-nnoremap <leader>e :vsplit $MYVIMRC<cr>
-nnoremap <leader>s :source $MYVIMRC<cr>
-nnoremap <leader>q :call QuickfixToggle()<cr>
-nnoremap <leader>f :call OpenAllFolds()<cr>
-
-" surround current word with double-quotes
-nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
-=======
 " By default, use magic for Regular Expressions
 nnoremap / /\v
 " Search (grep)  for the word under the cursor
 ":nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " %"<cr>:copen<cr>
->>>>>>> grep-operator
 
 "here is a "word"
 "
@@ -111,7 +93,7 @@ nnoremap / /\v
 "
 "  }}}
 " Abbreviations  {{{
-:iabbrev @@    gregg@gkeary.com
+:iabbrev @@@    gregg@gkeary.com
 :iabbrev ccopy Copyright 2016 Gregg Keary, all rights reserved.
 :iabbrev ssig --- <cr>Gregg Keary<cr>gregg@gkeary.com
 " }}}
