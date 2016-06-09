@@ -1,4 +1,4 @@
-"  zM close-all   zR  Open-all
+": zM close-all   zR  Open-all
 source $VIMRUNTIME/mswin.vim
 " makes the mouse behave like MicroSoft Windows mouse  cf behave xterm 
 behave mswin 
@@ -71,19 +71,15 @@ colorscheme solarized
 let mapleader = ","
 "  \ must be escaped
 let maplocalleader = ","
+nnoremap <leader>f :call OpenAllFolds()<cr>
 nnoremap <leader>n :NERDTreeToggle<CR> 
 nnoremap <leader>e :vsplit $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 nnoremap <leader>q :call QuickfixToggle()<cr>
-"
-"Stop the highlighting for the 'hlsearch' option
 nnoremap <leader>hl :nohlsearch<CR>
-
-" surround current word with double-quotes
 nnoremap <leader>' viw<esc>a"<esc>hbi"<esc>lel
-
-" By default, use magic for Regular Expressions
 nnoremap / /\v
+" By default, use magic for Regular Expressions
 " Search (grep)  for the word under the cursor
 ":nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " %"<cr>:copen<cr>
 
@@ -120,4 +116,10 @@ nnoremap / /\v
 "Remember: the best way to learn to use these new snippets is to disable the old way of doing things. Running :iabbrev <buffer> return NOPENOPENOPE will force you to use your abbreviation instead. Add these "training" snippets to match all the ones you created to save time.
 ":iabbrev <buffer> return NOPENOPENOPE 
 
+" }}}
+" Split Navigations  {{{
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 " }}}
