@@ -1,4 +1,9 @@
-# scriptease.vim
+# original filename
+===================
+ scriptease.vim
+
+
+@# scriptease.vim
 
 I make so many Vim plugins I had to make a Vim plugin for making Vim plugins.
 
